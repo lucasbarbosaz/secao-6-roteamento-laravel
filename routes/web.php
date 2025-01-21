@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function (Request $request) {
-    dd($request);
+Route::get('/user/{user}', function (User $user) {
+    dd($user);
     // return view('welcome');
 });
 
