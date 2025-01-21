@@ -2,26 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/teste', function () {
-    return 'teste';
-})->middleware('signed');
-
-Route::middleware('signed')->group(function () {
-    Route::get('user/{id}/update', function ($id) {
-        return "Atualizando o usuário de id: {$id}";
-    })->name('update');
-
-    Route::get('{id}', function ($id) {
-        return "Detalhes do usuário de id: {$id}";
-    })->name('show');
+Route::domain('{user}.localhost')->group(function () {
+    Route::get('{$id}', function ($user, $id) {
+        return $user . ' - ' . $id;
+    });
 });
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 /*
 ANOTAÇÕES
