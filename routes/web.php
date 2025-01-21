@@ -3,14 +3,15 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/token/{token}', function($token) {
-    return $token;
-});
+Route::prefix('/user')->name('user.')->group(function () {
+    Route::get('/{id}/update', function ($id) {
+        return "Atualizando o usuário de id: {$id}";
+    })->name('update');
 
-Route::get('/users/{id?}/{name?}', function ($id = null, $name = null) {
-    return 'User id: ' . $id . ' - User name: ' . $name;
+    Route::get('{id}', function ($id) {
+        return "Detalhes do usuário de id: {$id}";
+    })->name('show');
 });
-
 
 
 Route::get('/', function () {
