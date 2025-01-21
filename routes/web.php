@@ -3,8 +3,12 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('/user')->name('user.')->group(function () {
-    Route::get('/{id}/update', function ($id) {
+Route::get('/teste', function () {
+    return 'teste';
+})->middleware('signed');
+
+Route::middleware('signed')->group(function () {
+    Route::get('user/{id}/update', function ($id) {
         return "Atualizando o usuário de id: {$id}";
     })->name('update');
 
