@@ -2,14 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::domain('{user}.localhost')->group(function () {
-    Route::get('{$id}', function ($user, $id) {
-        return $user . ' - ' . $id;
-    });
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+
+Route::fallback(function () {
+    return view('welcome');
 });
 
 /*
 ANOTAÇÕES
+
+fallback é uma rota que é chamada quando nenhuma outra rota é encontrada ou seja quando a rota não existe
+
+Route::fallback(function () {
+    return view('welcome');
+})
 
 https://laravel.com/docs/11.x/routing#parameters-regular-expression-constraints todos os tipos de validação de parametros do laravel
 
